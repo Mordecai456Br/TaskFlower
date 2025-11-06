@@ -37,10 +37,10 @@ public class SecurityConfig {
                                 "/swagger-ui").permitAll()
 
                         // Endpoints públicos
-                        .requestMatchers(HttpMethod.GET, "/races/**", "/places/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/projects/**", "/teams/**").permitAll()
 
                         // Endpoints administrativos
-                        .requestMatchers("/races/**", "/places/**").hasRole("ADMIN")
+                        .requestMatchers("/projects/**", "/teams/**").hasRole("ADMIN")
 
                         // Qualquer outro endpoint precisa estar autenticado
                         .anyRequest().authenticated()

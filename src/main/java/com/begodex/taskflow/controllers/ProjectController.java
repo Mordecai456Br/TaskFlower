@@ -3,10 +3,13 @@ package com.begodex.taskflow.controllers;
 import java.util.List;
 
 import com.begodex.taskflow.DTO.ProjectRequestDTO;
+import com.begodex.taskflow.DTO.team.TeamRequestDTO;
+import com.begodex.taskflow.DTO.team.TeamResponseDTO;
 import com.begodex.taskflow.models.project.Category;
 import com.begodex.taskflow.models.project.Project;
 import com.begodex.taskflow.services.ProjectService;
 
+import com.begodex.taskflow.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,19 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private TeamService teamService;
+
+    @PostMapping("/{projectId}/teams")
+    public ResponseEntity<TeamResponseDTO> create(@PathVariable Long projectId, @RequestBody TeamRequestDTO request) {
+        TeamResponseDTO created = teamService.create(projectId, request);
+        return ResponseEntity.status(201).body(created);
+    }
+
+    @GetMapping("/{projectId}/teams")
+    public ResponseEntity<List<TeamResponseDTO>> listByProject(@PathVariable Long projectId) {
+        return ResponseEntity.ok(teamService.findByProject(projectId));
+    }
 
     @GetMapping
     public ResponseEntity<List<Project>> getAll() {
