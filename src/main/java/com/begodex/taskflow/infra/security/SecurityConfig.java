@@ -40,7 +40,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/projects/**", "/teams/**").permitAll()
 
                         // Endpoints administrativos
-                        .requestMatchers("/projects/**", "/teams/**").hasRole("ADMIN")
+                        .requestMatchers("/projects/**", "/teams/**", "/tasks/**").hasRole("ADMIN")
 
                         // Qualquer outro endpoint precisa estar autenticado
                         .anyRequest().authenticated()

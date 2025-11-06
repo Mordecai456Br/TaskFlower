@@ -4,14 +4,16 @@ import jakarta.persistence.*;
 import java.time.Instant;
 import com.begodex.taskflow.models.user.User;
 import com.begodex.taskflow.models.task.Task;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /* Comentários vinculados a Tasks, escritos por Users */
 @Entity
 @Table(name = "comments")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Comment {
 
     @Id
@@ -30,6 +32,5 @@ public class Comment {
     private User author;
 
     private Instant createdAt;
-
-    // getters e setters...
+    
 }
