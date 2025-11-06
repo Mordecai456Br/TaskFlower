@@ -1,6 +1,7 @@
 package com.begodex.taskflow.infra;
 
 import com.begodex.taskflow.exceptions.*;
+import com.begodex.taskflow.exceptions.httpExceptions.EntityNotFoundException;
 import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

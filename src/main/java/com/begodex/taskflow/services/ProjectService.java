@@ -1,8 +1,10 @@
 package com.begodex.taskflow.services;
 
 import com.begodex.taskflow.DTO.ProjectRequestDTO;
-import com.begodex.taskflow.exceptions.EntityNotFoundException;
+import com.begodex.taskflow.exceptions.httpExceptions.EntityNotFoundException;
+import com.begodex.taskflow.models.project.Category;
 import com.begodex.taskflow.models.project.Project;
+import com.begodex.taskflow.models.project.ProjectStatus;
 import com.begodex.taskflow.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +38,7 @@ public class ProjectService {
         project.setDescription(request.getDescription());
         project.setCategory(request.getCategory());
         project.setCorporateCategory(request.getCorporateCategory());
-        project.setStatus(request.getStatus() != null ? request.getStatus() : com.begodex.taskflow.models.project.ProjectStatus.DRAFT);
+        project.setStatus(request.getStatus() != null ? request.getStatus() : ProjectStatus.DRAFT);
         project.setPrdScopePercent(request.getPrdScopePercent() != null ? request.getPrdScopePercent() : 0);
         project.setCreatedAt(Instant.now());
         project.setUpdatedAt(Instant.now());
@@ -69,7 +71,7 @@ public class ProjectService {
     }
 
     /* Busca por categoria pessoal */
-    public List<Project> findByCategory(com.begodex.taskflow.models.project.Category category) {
+    public List<Project> findByCategory(Category category) {
         return projectRepository.findByCategory(category);
     }
 

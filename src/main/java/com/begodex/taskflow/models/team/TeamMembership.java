@@ -3,15 +3,13 @@ package com.begodex.taskflow.models.team;
 import jakarta.persistence.*;
 import java.time.Instant;
 import com.begodex.taskflow.models.user.User;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
 @Entity
 @Table(name = "team_memberships",
         uniqueConstraints = @UniqueConstraint(columnNames = {"team_id", "user_id"}))
-@Getter
-@Setter
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class TeamMembership {
 
     @Id
@@ -33,12 +31,13 @@ public class TeamMembership {
     private boolean canEdit;
     private boolean canDelete;
     private boolean canRead;
-    private boolean canAssociate;
+    private boolean canAssign;
 
     @Enumerated(EnumType.STRING)
     private com.begodex.taskflow.models.team.RoleInTeam role;
 
     private Instant joinedAt;
+
 
 
 }

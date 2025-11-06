@@ -1,22 +1,19 @@
 package com.begodex.taskflow.models.team;
 
-import jakarta.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 import com.begodex.taskflow.models.project.Project;
-import com.begodex.taskflow.models.user.User;
-import lombok.Getter;
-import lombok.Setter;
+import com.begodex.taskflow.models.task.Task;
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
 
-
+/* Entidade Team */
 @Entity
 @Table(name = "teams")
-@Getter
-@Setter
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class Team {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -24,12 +21,13 @@ public class Team {
     @Column(length = 1000)
     private String description;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<TeamMembership> memberships = new ArrayList<>();
 
     @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
-    private java.util.List<TeamMembership> memberships = new java.util.ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 }
