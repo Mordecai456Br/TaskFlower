@@ -23,5 +23,4 @@ public class TaskRequestDTO {
     private Integer estimatedPomodoros;
     private Float weight;
 
-
 }

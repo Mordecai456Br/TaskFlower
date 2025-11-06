@@ -1,18 +1,25 @@
 package com.begodex.taskflow.models.task;
 
+import com.begodex.taskflow.models.Comment;
+import io.swagger.v3.oas.annotations.info.Info;
 import jakarta.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.begodex.taskflow.models.project.Project;
 import com.begodex.taskflow.models.team.Team;
 import com.begodex.taskflow.models.user.User;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
 @Entity
 @Table(name = "tasks")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Task {
 
     @Id
@@ -55,5 +62,9 @@ public class Task {
 
     private Instant createdAt;
     private Instant doneAt;
+
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();
+
 
 }
