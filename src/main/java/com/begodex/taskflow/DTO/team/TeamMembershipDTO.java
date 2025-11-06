@@ -1,15 +1,9 @@
 package com.begodex.taskflow.DTO.team;
 
 import lombok.*;
-
 import java.time.Instant;
 
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class TeamMembershipDTO {
     private Long id;
     private Long teamId;
@@ -18,9 +12,7 @@ public class TeamMembershipDTO {
     private boolean canEdit;
     private boolean canDelete;
     private boolean canRead;
-    private boolean canAssociate;
+    private boolean canAssign;
     private String role;
     private Instant joinedAt;
-
-
 }
