@@ -32,5 +32,5 @@ public class Comment {
     private User author;
 
     private Instant createdAt;
-    
+
 }
