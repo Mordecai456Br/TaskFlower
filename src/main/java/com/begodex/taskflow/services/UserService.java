@@ -1,7 +1,7 @@
 package com.begodex.taskflow.services;
 
 import com.begodex.taskflow.DTO.UserResponseDTO;
-import com.begodex.taskflow.exceptions.EntityNotFoundException;
+import com.begodex.taskflow.exceptions.httpExceptions.EntityNotFoundException;
 import com.begodex.taskflow.exceptions.UserAlreadyExistsException;
 import com.begodex.taskflow.exceptions.UserIsAlreadyAdminException;
 import com.begodex.taskflow.models.user.User;

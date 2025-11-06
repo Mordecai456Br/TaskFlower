@@ -1,7 +1,7 @@
 package com.begodex.taskflow.services;
 
 import com.begodex.taskflow.DTO.ProjectRequestDTO;
-import com.begodex.taskflow.exceptions.EntityNotFoundException;
+import com.begodex.taskflow.exceptions.httpExceptions.EntityNotFoundException;
 import com.begodex.taskflow.models.project.Project;
 import com.begodex.taskflow.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;

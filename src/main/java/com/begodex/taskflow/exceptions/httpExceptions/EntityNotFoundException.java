@@ -1,4 +1,4 @@
-package com.begodex.taskflow.exceptions;
+package com.begodex.taskflow.exceptions.httpExceptions;
 
 
 public class EntityNotFoundException extends RuntimeException {
