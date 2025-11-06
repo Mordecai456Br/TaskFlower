@@ -28,16 +28,16 @@ public class TeamService {
 
     @Transactional
     public TeamResponseDTO create(Long projectId, TeamRequestDTO req) {
-        Project p = projectRepository.findById(projectId)
+        Project project = projectRepository.findById(projectId)
                 .orElseThrow(() -> new EntityNotFoundException("Project", projectId));
-        Team t = Team.builder().name(req.getName()).description(req.getDescription()).project(p).build();
-        t = teamRepository.save(t);
-        return toTeamDto(t);
+        Team team = Team.builder().name(req.getName()).description(req.getDescription()).project(project).build();
+        team = teamRepository.save(team);
+        return toTeamDto(team);
     }
 
     public TeamResponseDTO findById(Long id) {
-        Team t = teamRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Team", id));
-        return toTeamDto(t);
+        Team team = teamRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Team", id));
+        return toTeamDto(team);
     }
 
     public List<TeamResponseDTO> findByProject(Long projectId) {
@@ -46,10 +46,10 @@ public class TeamService {
 
     @Transactional
     public TeamResponseDTO update(Long id, TeamRequestDTO req) {
-        Team t = teamRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Team", id));
-        if (req.getName() != null) t.setName(req.getName());
-        if (req.getDescription() != null) t.setDescription(req.getDescription());
-        return toTeamDto(teamRepository.save(t));
+        Team team = teamRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Team", id));
+        if (req.getName() != null) team.setName(req.getName());
+        if (req.getDescription() != null) team.setDescription(req.getDescription());
+        return toTeamDto(teamRepository.save(team));
     }
 
     @Transactional
@@ -69,7 +69,7 @@ public class TeamService {
             throw new BadRequestException("User already member of team");
         }
 
-        TeamMembership m = TeamMembership.builder()
+        TeamMembership membership = TeamMembership.builder()
                 .team(team)
                 .user(user)
                 .canCreate(dto.isCanCreate())
@@ -81,32 +81,32 @@ public class TeamService {
                 .joinedAt(dto.getJoinedAt() != null ? dto.getJoinedAt() : Instant.now())
                 .build();
 
-        m = membershipRepository.save(m);
-        return toMembershipDto(m);
+        membership = membershipRepository.save(membership);
+        return toMembershipDto(membership);
     }
 
     @Transactional
     public TeamMembershipDTO updateMemberPermissions(Long teamId, Long userId, TeamMembershipDTO dto) {
-        TeamMembership m = membershipRepository.findByTeamIdAndUserId(teamId, userId)
+        TeamMembership membership = membershipRepository.findByTeamIdAndUserId(teamId, userId)
                 .orElseThrow(() -> new EntityNotFoundException("TeamMembership", String.format("team=%d,user=%d", teamId, userId)));
 
         // aplica apenas campos não-nulos (booleanos vêm como false por padrão, então aplicamos sempre)
-        m.setCanCreate(dto.isCanCreate());
-        m.setCanEdit(dto.isCanEdit());
-        m.setCanDelete(dto.isCanDelete());
-        m.setCanRead(dto.isCanRead());
-        m.setCanAssign(dto.isCanAssign());
-        if (dto.getRole() != null) m.setRole(RoleInTeam.valueOf(dto.getRole()));
+        membership.setCanCreate(dto.isCanCreate());
+        membership.setCanEdit(dto.isCanEdit());
+        membership.setCanDelete(dto.isCanDelete());
+        membership.setCanRead(dto.isCanRead());
+        membership.setCanAssign(dto.isCanAssign());
+        if (dto.getRole() != null) membership.setRole(RoleInTeam.valueOf(dto.getRole()));
 
-        m = membershipRepository.save(m);
-        return toMembershipDto(m);
+        membership = membershipRepository.save(membership);
+        return toMembershipDto(membership);
     }
 
     @Transactional
     public void removeMember(Long teamId, Long userId) {
-        TeamMembership m = membershipRepository.findByTeamIdAndUserId(teamId, userId)
+        TeamMembership membership = membershipRepository.findByTeamIdAndUserId(teamId, userId)
                 .orElseThrow(() -> new EntityNotFoundException("TeamMembership", String.format("team=%d,user=%d", teamId, userId)));
-        membershipRepository.delete(m);
+        membershipRepository.delete(membership);
     }
 
     public List<TeamMembershipDTO> listMembers(Long teamId) {
@@ -115,30 +115,30 @@ public class TeamService {
 
     // --- simple mappers (inline and minimal) ---
 
-    private TeamResponseDTO toTeamDto(Team t) {
-        List<TeamMembershipDTO> members = membershipRepository.findByTeamId(t.getId())
+    private TeamResponseDTO toTeamDto(Team team) {
+        List<TeamMembershipDTO> members = membershipRepository.findByTeamId(team.getId())
                 .stream().map(this::toMembershipDto).collect(Collectors.toList());
         return TeamResponseDTO.builder()
-                .id(t.getId())
-                .name(t.getName())
-                .description(t.getDescription())
-                .projectId(t.getProject().getId())
+                .id(team.getId())
+                .name(team.getName())
+                .description(team.getDescription())
+                .projectId(team.getProject().getId())
                 .memberships(members)
                 .build();
     }
 
-    private TeamMembershipDTO toMembershipDto(TeamMembership m) {
+    private TeamMembershipDTO toMembershipDto(TeamMembership membership) {
         return TeamMembershipDTO.builder()
-                .id(m.getId())
-                .teamId(m.getTeam().getId())
-                .userId(m.getUser().getId())
-                .canCreate(m.isCanCreate())
-                .canEdit(m.isCanEdit())
-                .canDelete(m.isCanDelete())
-                .canRead(m.isCanRead())
-                .canAssign(m.isCanAssign())
-                .role(m.getRole() != null ? m.getRole().name() : null)
-                .joinedAt(m.getJoinedAt())
+                .id(membership.getId())
+                .teamId(membership.getTeam().getId())
+                .userId(membership.getUser().getId())
+                .canCreate(membership.isCanCreate())
+                .canEdit(membership.isCanEdit())
+                .canDelete(membership.isCanDelete())
+                .canRead(membership.isCanRead())
+                .canAssign(membership.isCanAssign())
+                .role(membership.getRole() != null ? membership.getRole().name() : null)
+                .joinedAt(membership.getJoinedAt())
                 .build();
     }
 }
