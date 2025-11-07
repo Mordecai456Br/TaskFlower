@@ -1,0 +1,453 @@
+.kanban-card {
+  	width: 100%;
+  	position: relative;
+  	overflow: hidden;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	gap: 10px;
+  	text-align: left;
+  	font-size: 16px;
+  	color: #ff4f38;
+  	font-family: Inter;
+}
+.todobody {
+  	align-self: stretch;
+  	display: flex;
+  	align-items: flex-start;
+  	gap: 10px;
+  	font-family: Geist;
+}
+.status {
+  	align-self: stretch;
+  	width: 3px;
+  	display: flex;
+  	align-items: center;
+}
+.statusnormal {
+  	align-self: stretch;
+  	width: 3px;
+  	position: relative;
+  	border-radius: 4px 0px 0px 4px;
+  	background-color: #f0f0f0;
+}
+.todo-content {
+  	flex: 1;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: center;
+}
+.content {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	gap: 12px;
+}
+.alltags {
+  	align-self: stretch;
+  	display: flex;
+  	align-items: center;
+  	gap: 4px;
+}
+
+.project-tag {
+  	width: 98px;
+  	border-radius: 6px;
+  	background-color: #3c3c52;
+  	display: flex;
+  	align-items: flex-start;
+  	padding: 4px 8px;
+  	box-sizing: border-box;
+  	color: #e9e9e9;
+}
+.tags {
+  	height: 20px;
+  	flex: 1;
+  	display: flex;
+  	align-items: flex-start;
+}
+
+/* Cores das prioridades — área ampliada */
+.prioridade {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px; /* 🔹 aumentei o espaço interno */
+  border-radius: 10px; /* 🔹 cantos mais arredondados */
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prioridade:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Cores das prioridades */
+.prioridade.low {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+}
+
+.prioridade.medium {
+  background: linear-gradient(135deg, #ffc107, #e6a800);
+  color: #3b3b3b;
+}
+
+.prioridade.high {
+  background: linear-gradient(135deg, #e53935, #b71c1c);
+}
+
+.prioridade.critical {
+  background: linear-gradient(135deg, #212121, #000);
+  border: 1px solid #555;
+}
+
+
+.div {
+  	position: relative;
+  	font-weight: 500;
+  	font-family: Inter;
+  	color: #9b9b9b;
+  	text-align: right;
+}
+.body {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	text-align: right;
+  	font-size: 20px;
+  	color: #4c4c4c;
+  	font-family: Inter;
+}
+.header {
+  	align-self: stretch;
+}
+
+.property-1default {
+  	width: 100%;
+  	position: relative;
+  	overflow: hidden;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	gap: 10px;
+  	text-align: left;
+  	font-size: 16px;
+  	color: #ff4f38;
+  	font-family: Inter;
+}
+.todobody {
+  	align-self: stretch;
+  	display: flex;
+  	align-items: flex-start;
+  	gap: 10px;
+  	font-family: Geist;
+}
+.status {
+  	align-self: stretch;
+  	width: 3px;
+  	display: flex;
+  	align-items: center;
+}
+.statusnormal {
+  	align-self: stretch;
+  	width: 3px;
+  	position: relative;
+  	border-radius: 4px 0px 0px 4px;
+  	background-color: #f0f0f0;
+}
+.todo-content {
+  	flex: 1;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: center;
+}
+.content {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	gap: 12px;
+}
+.alltags {
+  	align-self: stretch;
+  	display: flex;
+  	align-items: center;
+  	gap: 4px;
+}
+
+.high {
+  	position: relative;
+  	line-height: 16px;
+  	font-weight: 500;
+}
+.project-tag {
+  	width: 98px;
+  	border-radius: 6px;
+  	background-color: #3c3c52;
+  	display: flex;
+  	align-items: flex-start;
+  	padding: 4px 8px;
+  	box-sizing: border-box;
+  	color: #e9e9e9;
+}
+.tags {
+  	height: 20px;
+  	flex: 1;
+  	display: flex;
+  	align-items: flex-start;
+}
+.div {
+  	position: relative;
+  	font-weight: 500;
+  	font-family: Inter;
+  	color: #9b9b9b;
+  	text-align: right;
+}
+.body {
+  	align-self: stretch;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	text-align: right;
+  	font-size: 20px;
+  	color: #4c4c4c;
+  	font-family: Inter;
+}
+.header {
+  	align-self: stretch;
+  	display: flex;
+  	align-items: flex-start;
+}
+.registro-jwt {
+  	position: relative;
+  	font-weight: 600;
+}
+.implementar-a-funo {
+  	align-self: stretch;
+  	position: relative;
+  	color: #9b9b9b;
+  	text-align: left;
+}
+.persons {
+  	width: 353.3px;
+  	display: none;
+  	align-items: center;
+  	gap: 8px;
+  	text-align: right;
+  	color: #c0c0c0;
+}
+.personinproject {
+  	height: 19px;
+  	width: 135px;
+  	position: relative;
+  	flex-shrink: 0;
+  	color: #665ddc;
+}
+.gabrielbegodex {
+  	position: absolute;
+  	top: 0%;
+  	left: 0%;
+  	font-weight: 500;
+}
+.property-1default-personinproject {
+  	height: 19px;
+  	width: 135px;
+  	position: relative;
+  	flex-shrink: 0;
+}
+.actions {
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 0px 10px;
+  	gap: 24px;
+  	font-size: 20px;
+  	color: #9b9b9b;
+}
+.chat {
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	gap: 4px;
+}
+.chat-icon {
+  	width: 20px;
+  	position: relative;
+  	max-height: 100%;
+  	object-fit: cover;
+}
+.property-1default-div {
+  	position: relative;
+}
+.actionbuttons {
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+}
+
+
+.project-tag2 {
+  	width: 319px;
+  	height: 454px;
+  	position: relative;
+  	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  	border-radius: 6px;
+  	background-color: #fff;
+  	overflow: hidden;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: 20px;
+  	box-sizing: border-box;
+  	gap: 20px;
+  	max-width: 90%;
+  	max-height: 90%;
+  	text-align: left;
+  	font-size: 12px;
+  	color: #9b9b9b;
+  	font-family: Inter;
+}
+.dia-tal-parent {
+  	align-self: stretch;
+  	flex: 1;
+  	border-radius: 10px;
+  	background-color: #fff;
+  	border: 1px solid #f0f0f0;
+  	overflow-y: auto;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: 10px;
+  	gap: 10px;
+}
+.dia-tal {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	gap: 10px;
+}
+.project-tag2-div {
+  	position: relative;
+  	color: #4c4c4c;
+}
+.span {
+  	font-weight: 600;
+}
+.project-tag2-span {
+  	color: #000;
+}
+.messagecomponent {
+  	width: 259px;
+  	display: flex;
+  	align-items: flex-start;
+  	gap: 10px;
+}
+.image-2-icon {
+  	width: 30px;
+  	position: relative;
+  	border-radius: 100px;
+  	max-height: 100%;
+  	object-fit: cover;
+}
+.frame-parent {
+  	flex: 1;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: center;
+  	gap: 10px;
+}
+.gabriel-freitas-parent {
+  	align-self: stretch;
+  	display: flex;
+  	align-items: center;
+  	justify-content: space-between;
+  	gap: 20px;
+}
+.gabriel-freitas {
+  	position: relative;
+  	font-weight: 600;
+}
+.div2 {
+  	position: relative;
+  	font-size: 10px;
+  	text-align: right;
+}
+.a-autenticao-est {
+  	align-self: stretch;
+  	position: relative;
+}
+.project-tag2-dia-tal {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	gap: 10px;
+  	color: #4c4c4c;
+}
+.messagecomponent3 {
+  	width: 259px;
+  	display: flex;
+  	align-items: flex-start;
+  	gap: 10px;
+  	color: #9b9b9b;
+}
+.type-something-wrapper {
+  	align-self: stretch;
+  	border-radius: 10px;
+  	background-color: #fff;
+  	border: 1px solid #f0f0f0;
+  	display: flex;
+  	align-items: center;
+  	padding: 10px;
+  	text-align: right;
+  	font-size: 16px;
+}
+.type-something {
+  	position: relative;
+}
+
+.delete-task {
+  position: absolute;
+  top: 10px;   /* antes era 6px */
+  right: 12px; /* antes era 8px */
+  background: transparent;
+  border: none;
+  color: #d9534f;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.2s ease;
+}
+
+.delete-task:hover {
+  color: #a94442;
+  transform: scale(1.2);
+}
+
+
+.prioridade .low {
+  background-color: #0f9217;
+}
+
+.prioridade .medium {
+  background-color: #e6a800;
+}
+
+.prioridade .high {
+  background-color: #921707;
+}
+
+.prioridade .critical {
+  background-color: #000;
+  color: #fff;
+}
